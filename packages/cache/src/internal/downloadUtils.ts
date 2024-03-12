@@ -13,7 +13,7 @@ import {DownloadOptions} from '../options'
 import {retryHttpClientResponse} from './requestUtils'
 
 import {AbortController} from '@azure/abort-controller'
-
+import {createHttpClient} from './cacheHttpClient'
 /**
  * Pipes the body of a HTTP response to a stream
  *
@@ -172,7 +172,8 @@ export async function downloadCacheHttpClient(
   archivePath: string
 ): Promise<void> {
   const writeStream = fs.createWriteStream(archivePath)
-  const httpClient = new HttpClient('actions/cache')
+  // const httpClient = new HttpClient('actions/cache')
+  const httpClient = createHttpClient()
   const downloadResponse = await retryHttpClientResponse(
     'downloadCache',
     async () => httpClient.get(archiveLocation)

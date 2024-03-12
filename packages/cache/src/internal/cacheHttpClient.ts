@@ -64,7 +64,7 @@ function getRequestOptions(): RequestOptions {
   return requestOptions
 }
 
-function createHttpClient(): HttpClient {
+export function createHttpClient(): HttpClient {
   const token = process.env['ACTIONS_RUNTIME_TOKEN'] || ''
   const bearerCredentialHandler = new BearerCredentialHandler(token)
 
